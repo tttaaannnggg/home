@@ -1,15 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./reset.css";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          here I am, you clowns
-        </p>
-      </header>
+        <div className="header">
+          <h1>tang</h1>
+        </div>
+        <article>
+          <p>
+            hello. I'm tang. I'm trying to see
+          </p>
+        </article>
     </div>
   );
 }
