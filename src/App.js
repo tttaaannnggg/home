@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <a onClick={switchView}>{views[viewName]()}</a>
+        {views[viewName]()}
       </header>
     </div>
   );
