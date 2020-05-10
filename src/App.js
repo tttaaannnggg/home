@@ -3,7 +3,6 @@ import "./reset.css";
 import "./App.css";
 
 function App() {
-  console.log(process.env);
   return (
     <div className="App">
         <div className="header">
@@ -11,7 +10,7 @@ function App() {
         </div>
         <article>
           <p>
-            hello. I'm tang. I'm trying to see what's on the process.env object. 
+            hello. I'm tang. I'm trying to see
           </p>
         </article>
     </div>
