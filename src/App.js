@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   if(test_var){
-    console.log(test_var);
+    console.log(process.env.test_var);
   }
   return (
     <div className="App">
