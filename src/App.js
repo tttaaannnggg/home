@@ -11,7 +11,7 @@ function App() {
         </div>
         <article>
           <p>
-            hello. I'm tang.
+            hello. I'm tang. I'm trying to see what's on the process.env object. something like this: {process.env}
           </p>
         </article>
     </div>
