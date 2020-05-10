@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from "react";
-import Landing from "./landing/Landing.js";
-import Next from "./next/Next.js";
+import "./reset.css";
 import "./App.css";
-import { getWeightedRandomItem } from "./utils/weightedRandom.js";
-
-const views = { Landing, Next };
 
 function App() {
-  const [view, setView] = useState(0);
-  const viewList = Object.keys(views);
-  const viewName = Object.keys(views)[view];
-  function switchView() {
-    return setView(state => (state + 1) % viewList.length);
+  if(test_var){
+    console.log(test_var);
   }
-  useEffect(() => {
-    setTimeout(switchView, 1200);
-  });
   return (
     <div className="App">
-      <header className="App-header">
-        {views[viewName]()}
-      </header>
+        <div className="header">
+          <h1>tang</h1>
+        </div>
+        <article>
+          <p>
+            hello. I'm tang.
+          </p>
+        </article>
     </div>
   );
 }
