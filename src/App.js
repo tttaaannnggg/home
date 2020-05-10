@@ -3,9 +3,7 @@ import "./reset.css";
 import "./App.css";
 
 function App() {
-  if(test_var){
-    console.log(process.env.test_var);
-  }
+  console.log(process.env.test_var);
   return (
     <div className="App">
         <div className="header">
