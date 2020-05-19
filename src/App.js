@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./reset.css";
 import "./App.css";
+const url = 'http://ec2-52-23-194-63.compute-1.amazonaws.com/';
 
 function App() {
-  const [post, setPost] = useState(1);
-  
+  const [post, setPost] = useState(0);
   return (
     <div className="App">
         <div className="header">
           <h1>tang</h1>
         </div>
-      {BlogPost({post})}
+      {BlogPost({setPost, post})}
       {Nav({setPost, post})}
     </div>
   );
@@ -28,28 +28,32 @@ function Nav(props){
 }
 
 function BlogPost(props){
+  const {setPost, post} = props;
   const [err, setErr] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [item, setItem] = useState({});
+  console.log(item);
 
   useEffect(
     ()=>{
-      fetch(`http://localhost:4000/api/posts/${props.post}`)
+      fetch(`${url}/api/posts/${post}`)
         .then(res=>res.json())
         .then(
           result =>{
             console.log(result);
             setIsLoaded(true);
-            setItems(result);
+            if(result && result[0]){
+              setItem(result[0]);
+              setPost(result[0].id)
+            };
           }
         )
     }, [props.post]
   )
 
-  console.log(items);
   let content = <p>loading..</p>;
-  if(isLoaded && items.length){
-    content = items[0].body.split('\n').filter(para=>para.length).map((para, i)=>(<p key={'p'+i}>{para}</p>));
+  if(isLoaded && item && item.body){
+    content = item.body.split('\n').filter(para=>para.length).map((para, i)=>(<p key={'p'+i}>{para}</p>));
   } else {
     content = <p>not found!</p>
   }
