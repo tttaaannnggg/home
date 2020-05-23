@@ -8,6 +8,7 @@ article {
   padding: 1.5em;
   margin: 1em;
   min-height: 80vh;
+  line-height: normal;
 }
 
 ::selection{
