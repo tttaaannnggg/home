@@ -5,9 +5,9 @@ h1 {
 article {
   border: 1px solid #734B5E;
   max-width: 45em;
-  padding: 1em;
+  padding: 1.5em;
+  margin: 1em;
   min-height: 80vh;
-  margin-left: 1em;
 }
 
 ::selection{
@@ -19,10 +19,10 @@ article {
   font-family: sans-serif;
   min-height: 1200px;
   color: #495867;
+  padding: 1em;
 }
 
 .header {
-  padding: 1em;
 }
 
 .App-link {

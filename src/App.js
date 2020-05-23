@@ -5,34 +5,34 @@ const url = window.location.href;
 
 function App() {
   const [post, setPost] = useState(0);
+  const [maxPost, setMaxPost] = useState(0);
   return (
     <div className="App">
         <div className="header">
           <h1>tang</h1>
         </div>
-      {BlogPost({setPost, post})}
-      {Nav({setPost, post})}
+      {BlogPost({setPost, post, setMaxPost})}
+      {Nav({setPost, post, maxPost})}
     </div>
   );
 }
 
 function Nav(props){
-  const {setPost, post} = props
+  const {setPost, post, maxPost} = props;
   return(
     <div>
-      <a onClick={()=>{setPost((post)=>post-1)}}> prev </a>
-      <span> {post} </span>
-      <a onClick={()=>{setPost((post)=>post+1)}}> next </a>
+      <button onClick={()=>{setPost((post)=>post-1 > 0 ? post-1:post)}}> prev </button>
+      <span> {post||null} </span>
+      <button onClick={()=>{setPost((post)=>post < maxPost ? post+1:post )}}> next </button>
     </div>
   )
 }
 
 function BlogPost(props){
-  const {setPost, post} = props;
+  const {setPost, post, setMaxPost} = props;
   const [err, setErr] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState({});
-  console.log(item);
 
   useEffect(
     ()=>{
@@ -41,11 +41,13 @@ function BlogPost(props){
         .then(res=>res.json())
         .then(
           result =>{
-            console.log(result);
             setIsLoaded(true);
             if(result && result[0]){
               setItem(result[0]);
               setPost(result[0].id)
+              if(!post){
+                setMaxPost(result[0].id);
+              }
             };
           }
         )
@@ -54,7 +56,9 @@ function BlogPost(props){
 
   let content = <p>loading..</p>;
   if(isLoaded && item && item.body){
-    content = item.body.split('\n').filter(para=>para.length).map((para, i)=>(<p key={'p'+i}>{para}</p>));
+    content = item.body.split('\n').map((para, i)=>{
+      return para? (<p key={'p'+i}>{para}</p>) : <br key={'p'+i}/>
+    });
   } else {
     content = <p>not found!</p>
   }
