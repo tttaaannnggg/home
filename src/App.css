@@ -11,6 +11,13 @@ article {
   line-height: normal;
 }
 
+button{
+  background: #FFF;
+  border: none;
+  font-size: 1em;
+  text-decoration: underline;
+}
+
 ::selection{
   background: #734B5E;
   color: #FFF;
