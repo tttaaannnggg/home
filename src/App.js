@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./reset.css";
 import "./App.css";
-const url = 'https://ec2-52-23-194-63.compute-1.amazonaws.com';
+const url = window.location.href;
 
 function App() {
   const [post, setPost] = useState(0);
@@ -36,8 +36,8 @@ function BlogPost(props){
 
   useEffect(
     ()=>{
-      console.log(`fetching to ${url}/api/posts/${post}`);
-      fetch(`${url}/api/posts/${post}`)
+      console.log(`fetching to ${url}api/posts/${post}`);
+      fetch(`${url}api/posts/${post}`)
         .then(res=>res.json())
         .then(
           result =>{
