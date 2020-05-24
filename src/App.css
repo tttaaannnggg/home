@@ -1,6 +1,9 @@
 h1 {
   font-size: 3em;
 }
+strong {
+  font-weight: bold;
+}
 
 article {
   border: 1px solid #734B5E;

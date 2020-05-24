@@ -22,10 +22,38 @@ function Nav(props){
   return(
     <div>
       <button onClick={()=>{setPost((post)=>post-1 > 0 ? post-1:post)}}> prev </button>
-      <span> {post||null} </span>
+      <span> {getNavList(post, maxPost)} </span>
       <button onClick={()=>{setPost((post)=>post < maxPost ? post+1:post )}}> next </button>
     </div>
   )
+}
+
+function getNavList(current, max){
+  //returns array of 5 elements
+  //represents pagination
+  const output = [];
+  let start = current - 2;
+  let end = current + 2;
+  if(current+5 > max){
+    // if  we're close to the end
+    start = max - 5;
+    end = max;
+  }else if(current < 5){
+    // if  we're close to the start
+    start = 1;
+    end = 5;
+  }
+  for(let i = start; i <= end; i++){
+    if(i < 1 || i > max){
+      continue
+    }
+    if(i === current){
+      output.push(<strong>{i}</strong>);
+    }else{
+      output.push(i);
+    }
+  }
+  return output;
 }
 
 function BlogPost(props){
