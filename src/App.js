@@ -34,9 +34,9 @@ function getNavList(current, max){
   const output = [];
   let start = current - 2;
   let end = current + 2;
-  if(current+5 >= max){
+  if(current+5 > max){
     // if  we're close to the end
-    start = max - 5;
+    start = max - 4;
     end = max;
   }else if(current < 5){
     // if  we're close to the start
@@ -55,6 +55,7 @@ function getNavList(current, max){
   }
   return output;
 }
+
 
 function BlogPost(props){
   const {setPost, post, setMaxPost} = props;
