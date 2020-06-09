@@ -34,11 +34,11 @@ function getNavList(current, max){
   const output = [];
   let start = current - 2;
   let end = current + 2;
-  if(current+5 > max){
+  if(current+2 > max){
     // if  we're close to the end
     start = max - 4;
     end = max;
-  }else if(current < 5){
+  }else if(current < 3){
     // if  we're close to the start
     start = 1;
     end = 5;
