@@ -10,9 +10,6 @@ function App() {
   return (
     <div className="App">
       <div className="Container">
-        <div className="Header">
-          <h1>tang</h1>
-        </div>
         {BlogPost({setPost, post, setMaxPost})}
         <Nav className="Nav" setPost={setPost} post={post} maxPost={maxPost} />
       </div>
@@ -20,9 +17,6 @@ function App() {
   );
 }
 
-function Header(){
-  return (<div></div>)
-}
 
 function Nav(props){
   const {setPost, post, maxPost} = props;
@@ -63,10 +57,16 @@ function getNavList(current, max){
   return output;
 }
 
+function BlogHeader(props){
+  const {title, created} = props.item
+  return (<div className="BlogHeader">
+      <h1>{title}</h1>
+      <em>{created}</em>
+    </div>)
+}
 
 function BlogPost(props){
   const {setPost, post, setMaxPost} = props;
-  const [err, setErr] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState({});
 
@@ -99,10 +99,12 @@ function BlogPost(props){
     content = <p>not found!</p>
   }
   return(
+    <>
+    <BlogHeader item ={item} />
     <article>
-      <h2>{props.title}</h2>
       {content}
     </article>
+    </>
   )
 }
 

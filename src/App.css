@@ -6,8 +6,14 @@ html{
 h1 {
   font-size: 3em;
 }
+p {
+  line-height:1.6;
+}
 strong {
   font-weight: bold;
+}
+em {
+  font-style: italic;
 }
 
 article {
@@ -36,13 +42,18 @@ button:focus{
 }
 
 .App {
+  padding: 2rem 0 2rem;
   font-family: sans-serif;
   color: #495867;
   display: flex;
   justify-content: center;
 }
 
-.Header {
+.BlogHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .Container{
