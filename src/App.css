@@ -1,3 +1,7 @@
+html{
+  font-size:16px;
+}
+
 h1 {
   font-size: 3em;
 }
@@ -6,10 +10,11 @@ strong {
 }
 
 article {
-  border: 1px solid #734B5E;
-  max-width: 45em;
-  padding: 1.5em;
-  margin: 1em;
+  border-bottom: 1px solid #734B5E;
+  border-top: 1px solid #734B5E;
+  max-width: 60rem;
+  min-width: 45rem;
+  padding: 1rem 0 1rem;
   min-height: 80vh;
   line-height: normal;
 }
@@ -28,12 +33,21 @@ button{
 
 .App {
   font-family: sans-serif;
-  min-height: 1200px;
   color: #495867;
   padding: 1em;
+  display: flex;
+  justify-content: center;
 }
 
-.header {
+.Header {
+}
+
+.Container{
+}
+
+.Nav{
+  display: flex;
+  justify-content: space-between;
 }
 
 .App-link {

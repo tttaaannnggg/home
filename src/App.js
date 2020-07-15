@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./reset.css";
 import "./App.css";
+import Markov from 'ez-markov';
 const url = window.location.href;
 
 function App() {
@@ -8,19 +9,25 @@ function App() {
   const [maxPost, setMaxPost] = useState(0);
   return (
     <div className="App">
-        <div className="header">
+      <div className="Container">
+        <div className="Header">
           <h1>tang</h1>
         </div>
-      {BlogPost({setPost, post, setMaxPost})}
-      {Nav({setPost, post, maxPost})}
+        {BlogPost({setPost, post, setMaxPost})}
+        <Nav className="Nav" setPost={setPost} post={post} maxPost={maxPost} />
+      </div>
     </div>
   );
+}
+
+function Header(){
+  return (<div></div>)
 }
 
 function Nav(props){
   const {setPost, post, maxPost} = props;
   return(
-    <div>
+    <div className="Nav">
       <button onClick={()=>{setPost((post)=>post-1 > 0 ? post-1:post)}}> prev </button>
       <span> {getNavList(post, maxPost)} </span>
       <button onClick={()=>{setPost((post)=>post < maxPost ? post+1:post )}}> next </button>
