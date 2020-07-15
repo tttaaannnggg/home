@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./reset.css";
 import "./App.css";
 import Markov from 'ez-markov';
-const url = window.location.href;
+const url = 'https://ttaanngg.com/'//window.location.href;
 
 function App() {
   const [post, setPost] = useState(0);
