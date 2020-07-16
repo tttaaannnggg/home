@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./reset.css";
 import "./App.css";
 import Markov from 'ez-markov';
-const url = 'https://ttaanngg.com/'//window.location.href;
+const url = window.location.href;
 
 function App() {
   const [post, setPost] = useState(0);
@@ -22,9 +22,9 @@ function Nav(props){
   const {setPost, post, maxPost} = props;
   return(
     <div className="Nav">
-      <button onClick={()=>{setPost((post)=>post-1 > 0 ? post-1:post)}}> prev </button>
+      <button onClick={()=>{setPost((post)=>post-1 > 0 ? post-1:post)}}> {"<-prev"} </button>
       <span> {getNavList(post, maxPost)} </span>
-      <button onClick={()=>{setPost((post)=>post < maxPost ? post+1:post )}}> next </button>
+      <button onClick={()=>{setPost((post)=>post < maxPost ? post+1:post )}}> {"next->"} </button>
     </div>
   )
 }
