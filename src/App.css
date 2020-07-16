@@ -6,6 +6,7 @@ html{
 
 h1 {
   font-size: 3em;
+  color: #00003b;
 }
 p {
   line-height:1.6;
@@ -27,6 +28,7 @@ article {
 }
 
 button{
+  color: inherit;
   font-size: 1rem;
   background: #FFF;
   border: none;
