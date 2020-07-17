@@ -7,11 +7,12 @@ const url = window.location.href;
 function App() {
   const [post, setPost] = useState(0);
   const [maxPost, setMaxPost] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   return (
     <div className="App">
       <div className="Container">
-        {BlogPost({setPost, post, setMaxPost})}
-        <Nav className="Nav" setPost={setPost} post={post} maxPost={maxPost} />
+        {BlogPost({setPost, post, setMaxPost, loaded, setLoaded})}
+        <Nav className="Nav" setPost={setPost} post={post} maxPost={maxPost} loaded={loaded} />
       </div>
     </div>
   );
@@ -19,12 +20,23 @@ function App() {
 
 
 function Nav(props){
-  const {setPost, post, maxPost} = props;
+  const {setPost, post, maxPost, loaded} = props;
   return(
     <div className="Nav">
-      <button onClick={()=>{setPost((post)=>post-1 > 0 ? post-1:post)}}> {"<-prev"} </button>
+      <button onClick={()=>{
+        //don't change state unless we've finished our last fetch
+        //otherwise we could trigger an infinite fetch loop
+        if(!loaded){
+          return
+        }
+        setPost((post)=> post-1 > 0 ? post-1:post)
+      }}> {"<-prev"} </button>
       <span> {getNavList(post, maxPost)} </span>
-      <button onClick={()=>{setPost((post)=>post < maxPost ? post+1:post )}}> {"next->"} </button>
+      <button onClick={()=>{
+        if(!loaded){
+          return
+        }
+        setPost((post)=>post < maxPost ? post+1:post )}}> {"next->"} </button>
     </div>
   )
 }
@@ -66,18 +78,18 @@ function BlogHeader(props){
 }
 
 function BlogPost(props){
-  const {setPost, post, setMaxPost} = props;
-  const [isLoaded, setIsLoaded] = useState(false);
+  const {setPost, post, setMaxPost, setLoaded} = props;
   const [item, setItem] = useState({});
 
   useEffect(
     ()=>{
       console.log(`fetching to ${url}api/posts/${post}`);
+      setLoaded(false)
       fetch(`${url}api/posts/${post}`)
         .then(res=>res.json())
         .then(
           result =>{
-            setIsLoaded(true);
+            setLoaded(true)
             if(result && result[0]){
               setItem(result[0]);
               setPost(result[0].id)
@@ -91,13 +103,11 @@ function BlogPost(props){
   )
 
   let content = <p>loading..</p>;
-  if(isLoaded && item && item.body){
+  if(item && item.body){
     content = item.body.split('\n').map((para, i)=>{
       return para? (<p key={'p'+i}>{para}</p>) : <br key={'p'+i}/>
     });
-  } else {
-    content = <p>not found!</p>
-  }
+  } 
   return(
     <>
     <BlogHeader item ={item} />
