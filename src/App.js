@@ -31,7 +31,7 @@ function Nav(props){
         }
         setPost((post)=> post-1 > 0 ? post-1:post)
       }}> {"<-prev"} </button>
-      <span> {getNavList(post, maxPost)} </span>
+      <span> {getNavList(post, maxPost).map((i)=><button onClick={()=>setPost(i)}>{i}</button>)} </span>
       <button onClick={()=>{
         if(!loaded){
           return
